@@ -11,7 +11,7 @@ const CardList = ({ pokemons }: { pokemons: any }) => {
     navigate("/Details", { state: { gotId } });
   };
   return (
-    <Flex flexWrap="wrap" gap="20px" justify='space-evenly'>
+    <Flex flexWrap="wrap" gap="25px" justify='space-evenly'>
       {pokemons.map((user: any, i: number) => {
         return (
           <Box

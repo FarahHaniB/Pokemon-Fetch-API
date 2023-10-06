@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import CardList from "./CardList";
-import { Box } from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
 
 function FetchApi() {
   const [allPokemons, setAllPokemons] = useState([]);
@@ -28,7 +28,8 @@ function FetchApi() {
   }, []);
 
   return (
-    <Box>
+    <Box padding={4}>
+      <Text align='center' fontSize='2xl' fontWeight='bold' margin={10}>Choose your Pokemon!</Text>
       <CardList pokemons={allPokemons} />
     </Box>
   );
