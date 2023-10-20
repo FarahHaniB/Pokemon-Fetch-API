@@ -3,7 +3,7 @@ import { Box, Text } from "@chakra-ui/react";
 
 function PokemonAbility({ ability }: { ability: string[] }) {
   return (
-    <Box p="8px" m="5px" minWidth='120px' bg="#bbe4e9" borderRadius="md">
+    <Box p="8px" m="5px" minWidth='120px' bg="#cadefc" borderRadius="md">
       <Text align="center">{ability}</Text>
     </Box>
   );
