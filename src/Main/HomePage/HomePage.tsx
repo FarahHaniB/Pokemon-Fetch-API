@@ -6,7 +6,7 @@ import HomeFooter from './HomeFooter'
 
 const HomePage = () => {
   return (
-    <Box height='100vh' >
+    <Box>
       <HomeHeader/>
       <HomeBody />
       <HomeFooter/>

@@ -10,6 +10,7 @@ const FetchDetailApi = () => {
   const [pokeImg, setPokeImg] = useState([]);
   const [pokeAbility, setPokeAbility] = useState([]);
   const [pokeType, setPokeType] = useState([]);
+  const [pokeMove, setPokeMove] = useState([]);
 
   const GetImg = async () => {
     const third = await fetch(
@@ -67,20 +68,40 @@ const FetchDetailApi = () => {
     setPokeType(loadPokeType);
   };
 
+  const GetMoves = async () => {
+    const fifth = await fetch(
+      `https://pokeapi.co/api/v2/pokemon/${location.state.gotId}`
+    );
+    const fifthJson = await fifth.json();
+
+    const detailsPokeMove = fifthJson.moves.map(async (i: any) => {
+      const fetchPokeMove = await Promise.all(i.move.name);
+      return fetchPokeMove.join("");
+    });
+
+    const res = await Promise.all(detailsPokeMove);
+
+    const loadPokeMove: any = (await Promise.all(detailsPokeMove)).map(
+      (data, i) => ({
+        key: data.i,
+        id: location.state.gotId,
+        move: res[i],
+      })
+    );
+
+    setPokeMove(loadPokeMove);
+  };
+
   useEffect(() => {
     GetImg();
     GetAbility();
     GetTypes();
+    GetMoves();
   }, []);
 
   return (
     <Box>
-      <Flex
-        direction="column"
-        h="100vh"
-        justifyContent="space-evenly"
-        align="center"
-      >
+      <Flex direction="column" justifyContent="space-evenly" align="center">
         <Text as="b" fontSize="3xl">
           I'm {location.state.gotId}!
         </Text>
@@ -88,8 +109,13 @@ const FetchDetailApi = () => {
           pokeAbi={pokeAbility}
           myImage={pokeImg}
           pokeType={pokeType}
+          pokeMove={pokeMove}
         />
-        <Button onClick={() => navigate(-1)}>Back</Button>
+        <Box marginY={5}>
+        <Button onClick={() => navigate(-1)} colorScheme="teal">
+          Back
+        </Button>
+        </Box>
       </Flex>
     </Box>
   );

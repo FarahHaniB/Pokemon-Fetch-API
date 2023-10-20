@@ -6,7 +6,7 @@ import { Box } from '@chakra-ui/react'
 
 const HomeBody = () => {
   return (
-    <Box  padding='15px' bg='#e4f1fe'>
+    <Box padding='15px' bg='#e4f1fe'>
     <Router>
       <Routes>
         <Route path="/" element={<FetchApi />} />
